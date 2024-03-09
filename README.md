@@ -1,7 +1,7 @@
 # WSL 2 and Cisco AnyConnect VPN: A Networking Solution
 ## Introduction
 
-This repository provides a workaround for a known issue with WSL 2 and Cisco AnyConnect VPN. When a VPN session is established, firewall rules and routes are added that disrupt network connectivity within the WSL 2 VM. This issue is tracked in [WSL/issues/4277](https://github.com/microsoft/WSL/issues/4277).
+This repository provides a workaround for a known issue with WSL 2 and Cisco AnyConnect VPN. When a VPN session is established, firewall rules and routes are added that disrupt network connectivity within the WSL 2 VM. This issue is tracked in [WSL/issues/4277](https://github.com/microsoft/WSL/issues/4277) and [WSL/issues/5068](https://github.com/microsoft/WSL/issues/5068).
 
 The provided scripts automatically configure the interface metric on VPN connect and update DNS settings (/etc/resolv.conf) on connect/disconnect, thereby maintaining network connectivity.
 
