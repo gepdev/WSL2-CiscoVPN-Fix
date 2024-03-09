@@ -69,6 +69,7 @@ We will create two tasks. The first task, will configure the interface metric wh
 - 2041: The entire VPN connection has been re-established.
 
 #### Procedure
+Task Scheduler should be opened as an Administrator.
 1. Open Task Scheduler
 2. Create a Folder called `WSL` (Optional, but easier to find rules later)
 3. Create Rules
