@@ -16,9 +16,7 @@ Ensure that you have WSL 2 and Cisco AnyConnect VPN installed on your system.
 1. Clone this repository or download the scripts.
 2. Save the scripts to a local directory, for example, `%HOMEPATH%\wsl\scripts`.
 
-
-## Usage
-
+## Scripts description
 ### setCiscoVpnMetric.ps1
 This PowerShell script adjusts the network interface metric for the Cisco AnyConnect VPN adapter to prevent the VPN connection from interfering with other network connections in WSL 2.
 
@@ -41,6 +39,23 @@ When run, the script performs the following steps:
 - It then uses the `Set-NetIPInterface` cmdlet to set the interface metric of the Cisco AnyConnect adapter to 6000.
 
 By setting a high interface metric, the system will prioritize other network interfaces over the VPN when establishing network connections. This can help to maintain network connectivity in certain situations where the VPN might otherwise take precedence.
+
+
+## Usage
+
+### WSL configuration (one time setup)
+1. Open WSL 2
+2. Run the following command to unlink the default /etc/resolv.conf file in WSL 2 and prevent it from being overwritten on startup:
+    ```bash
+    sudo unlink /etc/resolv.conf
+    ```
+3. Run the following command to update the WSL 2 configuration file to prevent it from overwriting the /etc/resolv.conf file on startup:
+    ```bash
+    sudo tee /etc/wsl.conf <<EOF
+    [network]
+    generateResolvConf = false
+    EOF
+    ```
 
 ### Create Scheduled Tasks
 Windows Scheduled Tasks allows you to trigger an action when a certain log event comes in. The Cisco AnyConnect VPN client generates a number of log events.
