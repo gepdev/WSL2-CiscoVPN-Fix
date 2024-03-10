@@ -1,9 +1,9 @@
 $dnsServers = (Get-NetAdapter | Where-Object InterfaceDescription -like "Cisco AnyConnect*" | Get-DnsClientServerAddress).ServerAddresses
-$dnsServers += "8.8.8.8", "8.8.4.4"  # Add additional IP addresses here
 $searchSuffix = (Get-DnsClientGlobalSetting).SuffixSearchList -join ','
 
 function set-DnsWsl() {
   if ( $dnsServers ) {
+    $dnsServers += "8.8.8.8", "8.8.4.4"  # Add additional IP addresses here
     $setDnsCommand = $dnsServers | ForEach-Object { "echo 'nameserver $_' >> /etc/resolv.conf" }
     if ( $searchSuffix ) {
       $setDnsCommand += "echo 'search $searchSuffix' >> /etc/resolv.conf"
